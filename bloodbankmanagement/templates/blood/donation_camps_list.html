@@ -1,0 +1,39 @@
+{% extends 'blood/adminbase.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Donation Camps</h2>
+    <div class="text-right mb-3">
+        <a href="{% url 'add-donation-camp' %}" class="btn btn-success">Add New Camp</a>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    {% if camps %}
+    <div class="row">
+        {% for camp in camps %}
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ camp.name }}</h5>
+                    <p class="card-text">
+                        <strong>Date:</strong> {{ camp.date|date:"F d, Y" }}<br>
+                        <strong>Location:</strong> {{ camp.location }}<br>
+                        <strong>Description:</strong> {{ camp.description|default:"-" }}
+                    </p>
+                    <a href="{% url 'edit-donation-camp' camp.id %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'delete-donation-camp' camp.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this camp?')">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-center">No donation camps available.</p>
+    {% endif %}
+</div>
+{% endblock %}

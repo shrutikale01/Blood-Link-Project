@@ -1,0 +1,70 @@
+{% extends 'blood/adminbase.html' %}
+{% block content %}
+{% load widget_tweaks %}
+{% load static %}
+
+<br><br>
+<div class="container">
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if requests %}
+        <h4 class="text-center">Pending Blood Requests</h4><br>
+
+        <table class="table table-light table-hover table-bordered table-striped">
+            <thead class="bg-info">
+                <tr>
+                    <th>Name</th>
+                    <th>Registration Number</th>
+                    <th>Address</th>
+                    <th>Blood Group</th>
+                    <th>Unit (ml)</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th class="text-right">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for t in requests %}
+                <tr>
+                    <td>{{ t.request_by_hospital.hospital_name }}</td>
+                    <td>{{ t.request_by_hospital.registration_number }}</td>
+                    <td>{{ t.request_by_hospital.address }}</td>
+                    <td>{{ t.blood_group }}</td>
+                    <td>{{ t.unit }}</td>
+                    <td>{{ t.date }}</td>
+
+                    <td>
+                        <span class="badge bg-warning">Pending</span>
+                    </td>
+
+                    <td class="text-right">
+                        {% if t.id %}
+                            <a href="{% url 'update-approve-status' pk=t.id %}" class="btn btn-success btn-sm">Approve</a>
+                            <a href="{% url 'update-reject-status' pk=t.id %}" class="btn btn-danger btn-sm">Reject</a>
+                        {% else %}
+                            <span class="badge badge-secondary">No Action</span>
+                        {% endif %}
+                    </td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+        <h5 class="text-center">No Pending Requests!</h5>
+    {% endif %}
+
+</div>
+
+{% endblock content %}

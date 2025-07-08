@@ -1,0 +1,28 @@
+{% extends 'blood/adminbase.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Complete Blood Donation</h2>
+
+  <div class="card p-4 shadow-sm">
+    <h5>Donor Information</h5>
+    <p><strong>Name:</strong> {{ donation.donor.get_full_name }}</p>
+    <p><strong>Appointment Date:</strong> {{ donation.appointment_date }}</p>
+    <p><strong>Appointment Time:</strong> {{ donation.appointment_time }}</p>
+    <p><strong>Location:</strong> {{ donation.location }}</p>
+
+    <form method="POST" class="mt-4">
+      {% csrf_token %}
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Mark as Completed</button>
+        <a href="{% url 'admin-donation' %}" class="btn btn-secondary ms-2">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
+
+
+

@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .xyz {
+            margin-bottom: 0px;
+            background-image: url('{% static "image/newhomepage1.jpg" %}');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .camp-section {
+            padding: 30px;
+            background-color: #f8f9fa;
+        }
+        .camp-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-left: 5px solid crimson;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+
+<body>
+    {% include "blood/navbar.html" %}
+    <br>
+    <section id="section-jumbotron" style="margin-bottom: 0px;" class="jumbotron jumbotron-fluid d-flex justify-content-center align-items-center xyz">
+        <div class="container text-center">
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br>
+        </div>  
+    </section>
+
+    <div class="camp-section">
+        <h2 class="text-center mb-4">Upcoming Blood Donation Camps</h2>
+        {% if camps %}
+            {% for camp in camps %}
+                <div class="camp-item">
+                    <h4>{{ camp.title }}</h4>
+                    <p>{{ camp.description }}</p>
+                    <p><strong>Date:</strong> {{ camp.date }} | <strong>Location:</strong> {{ camp.location }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-center">No upcoming camps.</p>
+        {% endif %}
+    </div>
+
+    {% include "blood/footer.html" %}
+</body>
+
+</html>

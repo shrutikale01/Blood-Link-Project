@@ -1,0 +1,86 @@
+{% extends 'blood/adminbase.html' %}
+{% block content %}
+{% load widget_tweaks %}
+{% load static %}
+
+<br><br>
+<div class="container">
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <h4 class="text-center">Blood Request History</h4><br>
+
+    <table class="table table-light table-hover table-bordered table-striped">
+        <thead class="bg-info">
+            <tr>
+                <th>Name</th>
+                <th>Registration Number</th>
+                <th>Address</th>
+                <th>Blood Group</th>
+                <th>Unit (ml)</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Dispatched</th>
+                <th>Stock Status</th>
+                <th class="text-right">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for t in requests %}
+            <tr>
+                <td>{{ t.request_by_hospital.hospital_name }}</td>
+                <td>{{ t.request_by_hospital.registration_number }}</td>
+                <td>{{ t.request_by_hospital.address }}</td>
+                <td>{{ t.blood_group }}</td>
+                <td>{{ t.unit }}</td>
+                <td>{{ t.date }}</td>
+
+                <td>
+                    {% if t.status == 'Approved' %}
+                        <span class="badge bg-success">Approved</span>
+                    {% else %}
+                        <span class="badge bg-danger">Rejected</span>
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if t.dispatched %}
+                        <span class="badge bg-success">Yes</span>
+                    {% else %}
+                        <span class="badge bg-danger">No</span>
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if t.status == 'Approved' and t.dispatched %}
+                        {{ t.unit }} Units Deducted
+                    {% else %}
+                        0 Units Deducted
+                    {% endif %}
+                </td>
+                
+
+                <td class="text-right">
+                    {% if t.status == 'Approved' and not t.dispatched %}
+                        <a href="{% url 'dispatch-blood' t.id %}" class="btn btn-primary btn-sm">Dispatch</a>
+                    {% else %}
+                        <span class="badge bg-secondary">No Action</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock content %}

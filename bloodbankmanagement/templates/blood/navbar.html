@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <style type="text/css">
+    .bs-example {
+      margin: 0px;
+
+    }
+
+    .custom-navbar {
+    background-color: #FF0018;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    }
+
+    .brand-title {
+  font-size: 28px;          /* Bigger size */
+  font-weight: 800;         /* Bolder weight */
+  letter-spacing: 1px;      /* Optional spacing between letters */
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  text-transform: uppercase;  /* Optional: Make all caps */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3); /* Optional: subtle glow */
+}
+
+.brand-subtitle {
+  font-size: 12px;
+  font-weight: 300;
+  color: #f8f9fa;
+  letter-spacing: 1px;
+}
+
+    .nav-items-custom .nav-link {
+    color: white !important;
+    font-weight: 600;
+    font-size: 16px;
+    margin-left: 15px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .nav-items-custom .nav-link:hover {
+    background-color: white;
+    color: #FF0018 !important;
+    }
+
+  </style>
+</head>
+
+<body>
+
+
+
+  <div class="bs-example">
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top custom-navbar">
+  <div class="container">
+    <!-- Centered Brand -->
+    <a class="navbar-brand mx-auto d-flex flex-column align-items-center" href="/">
+        <i class="fas fa-heartbeat fa-lg"></i>
+        <span class="brand-title">Blood Link</span>
+        <small class="brand-subtitle">Connecting Life</small>
+    </a>
+
+
+    <!-- Toggler -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Right side nav items -->
+    <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+  <ul class="navbar-nav nav-items-custom">
+    <li class="nav-item">
+      <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/hospital/hospitallogin"><i class="fas fa-procedures"></i> Hospital</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/donor/donorlogin"><i class="fas fa-user"></i> Donor</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/adminlogin"><i class="fas fa-user-shield"></i> Admin</a>
+    </li>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+  </div>
+
+
+</body>
+
+</html>
